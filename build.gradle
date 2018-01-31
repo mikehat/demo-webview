@@ -1,0 +1,60 @@
+
+buildscript {
+
+    repositories {
+        jcenter()
+        google()
+    }
+
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0'
+    }
+}
+
+apply plugin: 'com.android.application'
+
+dependencies {
+}
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+}
+
+
+android {
+
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    lintOptions {
+          checkReleaseBuilds true
+          abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "com.luvcrew.demo.webview"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1001
+        versionName "v0.0.1"
+    }
+
+    signingConfigs {
+
+    }
+    
+    buildTypes {
+
+        debug {
+            manifestPlaceholders = [appNameBuild: " Debug"]
+
+            applicationIdSuffix ".debug"
+        }
+    }
+
+}

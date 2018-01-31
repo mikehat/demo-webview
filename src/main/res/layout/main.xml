@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<LinearLayout
+    xmlns:a="http://schemas.android.com/apk/res/android"
+    a:layout_width="match_parent"
+    a:layout_height="match_parent"
+    a:orientation="vertical"
+>
+
+    <FrameLayout
+        a:id="@+id/parent_frame"
+        a:layout_width="match_parent"
+        a:layout_height="300dp"
+    >
+        <WebView
+            a:id="@+id/parent_webview"
+            a:layout_width="match_parent"
+            a:layout_height="match_parent"
+        />
+    </FrameLayout>
+
+    <View
+        a:layout_width="match_parent"
+        a:layout_height="12dp"
+    />
+    
+    <FrameLayout
+        a:id="@+id/child_frame"
+        a:layout_width="match_parent"
+        a:layout_height="100dp"
+    />
+
+    <View
+        a:layout_width="match_parent"
+        a:layout_height="12dp"
+    />
+
+    <ScrollView
+        a:layout_width="match_parent"
+        a:layout_height="match_parent"
+    >
+        <TextView
+            a:id="@+id/messages"
+            a:layout_width="match_parent"
+            a:layout_height="wrap_content"
+            a:paddingLeft="12dp"
+            a:paddingRight="12dp"
+            a:textSize="10dp"
+        />
+    </ScrollView>
+
+</LinearLayout>
+

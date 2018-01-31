@@ -1,0 +1,8 @@
+
+set-env
+*.vim
+build/
+.gradle/
+*.swp
+Makefile
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<manifest xmlns:a="http://schemas.android.com/apk/res/android"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.luvcrew.demo.webview"
+          android:versionCode="1001"
+          android:versionName="0.0.1"
+>
+
+    <uses-permission a:name="android.permission.INTERNET" />
+
+    <uses-sdk android:minSdkVersion="21"
+              android:targetSdkVersion="26" />
+
+    <meta-data a:name="android.webkit.WebView.MetricsOptOut"
+               a:value="true" />
+
+    <application
+        a:icon="@drawable/icon" 
+        a:label="WebView Demo ${appNameBuild}"
+        a:description="@string/app_description"
+        a:resizeableActivity="true"
+        a:theme="@android:style/Theme.Material"
+    >
+    
+        <activity
+            a:name="com.luvcrew.demo.webview.MainActivity"
+            a:configChanges="orientation|screenLayout|screenSize"
+            a:launchMode="singleTask"
+        >
+
+            <intent-filter>
+                <action a:name="android.intent.action.MAIN" />
+                <category a:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+    </application>
+
+</manifest>

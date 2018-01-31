@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+    <head>
+        <script language="javascript">
+            
+            // BTW, if a child window with a certain name is already open, then
+            // window.open() doesn't result in WebChromeView.onCreateWindow() and
+            // the lockup/spin after form.submit() does not happen. Incrementing
+            // child_num ensures strange behavior after form.sumbit()
+
+            var child_num = 0;
+
+            function openChildWindow( url , do_reload )
+            {
+                var win_name = "child_" + child_num++;
+
+                var win = window.open( url , win_name );
+
+                var form = document.getElementById( "targeted-form" );
+                form.target = win_name;
+
+                document.getElementById( "do-reload" ).value = do_reload ? "true" : "false";
+
+                form.submit();
+            }
+
+            function show_message( v )
+            {
+                var message = document.getElementById( "message" );
+                switch( v )
+                {
+                    case 1:
+                        message.textContent = "using target=\"_blank\" works fine";
+                        message.style.background = "lightgreen";
+                        break;
+                    case 2:
+                        message.textContent = "using window.open() with a fast-loading initial url works fine"
+                        message.style.background = "lightgreen";
+                        break;
+                    case 3:
+                        message.textContent = "using window.open() with a slow-loading initial url fails with a high CPU load!!"
+                        message.style.background = "orange";
+                        break;
+                    case 4:
+                        message.textContent = "using window.open() with a fast-loading initial url and then calling WebView.reload() often fails"
+                        message.style.background = "pink";
+                        break;
+                    case 5:
+                        message.textContent = "using window.open() with a slow-loading initial url and then calling WebView.reload() works"
+                        message.style.background = "lightgreen";
+                        break;
+                }
+            }
+
+        </script>
+
+        <style>
+            td { padding-bottom: 5pt; font-size: 10pt; }
+        </style>
+
+    </head>
+
+    <body style="text-align: center; margin-top: 16pt;">
+
+        <form id="targeted-form" method="get" action="already-opened">
+            <input id="do-reload" type="hidden" name="do-reload" value="false" />
+        </form>
+
+        <table>
+            <col />
+            <col style="width: 40%" />
+            <tbody>
+                <tr>
+                    <td> Traditional form with target="_blank" </td>
+                    <td>
+                        <form id="traditional-form" method="get" action="traditional" target="_blank">
+                            <div>
+                                <input
+                                    type="submit"
+                                    class="button"
+                                    onclick="show_message(1);"
+                                />
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td> Submit with target pre-opened to about:blank </td>
+                    <td>
+                        <button class="button" onclick="show_message(2); openChildWindow( 'about:blank' );" >
+                            Blank
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td> Submit with target pre-opened to Google </td>
+                    <td>
+                        <button class="button" onclick="show_message(3); openChildWindow( 'https://www.google.com/' );" >
+                            Google
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td> Submit with target pre-opened to about:blank with reload hack </td>
+                    <td>
+                        <button class="button" onclick="show_message(4); openChildWindow( 'about:blank' , true );" >
+                            Blank + reload
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td> Submit with target pre-opened to Google with reload hack </td>
+                    <td>
+                        <button class="button" onclick="show_message(5); openChildWindow( 'https://www.google.com/' , true );" >
+                            Google + reload
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div id="message" style="font-size: 8pt; margin-top: 12pt; background: yellow;" />
+
+    </body>
+
+</html>
