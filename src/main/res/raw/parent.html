@@ -39,12 +39,12 @@
                         message.style.background = "lightgreen";
                         break;
                     case 3:
-                        message.textContent = "using window.open() with a slow-loading initial url fails with a high CPU load!!"
-                        message.style.background = "orange";
+                        message.textContent = "using window.open() with a slow-loading initial url used to fail with some sort of a spinlock (high, unending CPU load). This started with v61 (Sep 17) and seems to be fixed in v64 (Jan 18)."
+                        message.style.background = "pink";
                         break;
                     case 4:
                         message.textContent = "using window.open() with a fast-loading initial url and then calling WebView.reload() often fails"
-                        message.style.background = "pink";
+                        message.style.background = "orange";
                         break;
                     case 5:
                         message.textContent = "using window.open() with a slow-loading initial url and then calling WebView.reload() works"
