@@ -81,4 +81,4 @@ behaviors:
 If you don't want to build, look for the AVD in [build/output/avd/debug][2]
 
 [1]: https://bugs.chromium.org/p/chromium/issues/detail?id=770015
-[2]: tree/master/build/output/apk/debug
+[2]: https://github.com/mikehat/demo-webview/tree/master/build/output/apk/debug
