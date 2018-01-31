@@ -78,7 +78,7 @@ behaviors:
 
   This usually "fixes" the problem in my real-world app.
 
-Install the app on an AVD with API 27.
-
+If you don't want to build, look for the AVD in [build/output/avd/debug][2]
 
 [1]: https://bugs.chromium.org/p/chromium/issues/detail?id=770015
+[2]: tree/master/build/output/apk/debug

@@ -1,8 +1,8 @@
 
 set-env
 *.vim
-build/
 .gradle/
+build/
 *.swp
 Makefile
 
